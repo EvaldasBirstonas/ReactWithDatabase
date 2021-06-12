@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header'
+import InformationTable from './components/InformationTable'
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch("https://localhost:44351/Item")
+        .then(response => response.json())
+        .then(
+          (data) => {
+          console.log(data);
+          setIsLoaded(true);
+          setItems(data);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+        )
+  }, [])
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <div className="listContainer">
+        <Header />
+        <InformationTable informationList={ items }/>
+      </div>
+    );
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="listContainer">
+      <Header />
+      <InformationTable informationList={ fetchData() } />
     </div>
   );
 }
+
+const fetchData = () => {
+  return fetch("https://localhost:44351/Item")
+        .then((response) => response.json())
+        .then((data) => console.log(data));}
 
 export default App;
