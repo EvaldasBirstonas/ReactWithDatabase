@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace ItemBackend
 {
@@ -28,8 +29,9 @@ namespace ItemBackend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc().AddNewtonsoftJson();
             services.AddCors(options => options.AddDefaultPolicy(
-                    builder => builder.AllowAnyOrigin()));
+                    builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ItemBackend", Version = "v1" });

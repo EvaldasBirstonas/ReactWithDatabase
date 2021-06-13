@@ -10,11 +10,11 @@ namespace ItemBackend.Models
     {
         [Required, Display(Name = "Id")]
         public int Id { get; set; }
-        [Required, Display(Name = "Item name")]
+        [Required, Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Item description")]
+        [Display(Name = "Description")]
         public string Description { get; set; }
-        [Required, Display(Name = "Item addition date")]
+        [Required, Display(Name = "TimeOfAdding")]
         public DateTime TimeOfAddition { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 import InformationTable from '../InformationTable'
 import Button from '../Button';
 import NavBar from '../NavBar';
-import AddForm from './addForm';
+import AddForm from './AddForm';
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
