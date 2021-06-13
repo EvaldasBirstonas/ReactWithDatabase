@@ -29,6 +29,13 @@ namespace ItemBackend.Controllers
             return _context.Items.ToList();
         }
 
+        [HttpGet("Offset")]
+        public List<Item> GetItemsWithOffset(int start, int end)
+        {
+            //_logger.LogDebug(string.Join(",", _context.Items.ToList()));
+            return _context.Items.Skip(start).Take(end).ToList();
+        }
+
         [HttpPost("Post")]
         public IActionResult Create(JObject item)
         {
