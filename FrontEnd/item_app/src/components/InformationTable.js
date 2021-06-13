@@ -15,7 +15,7 @@ const InformationTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    { props.informationList.map(data => (
+                    { props.informationlist.map(data => (
                         <tr key={data.id}>
                             <td>{ data.id }</td>
                             <td>{ data.name } </td>
@@ -30,7 +30,7 @@ const InformationTable = (props) => {
 }
 
 Table.defaultProps = {
-    informationList: [],
+    informationlist: [],
 }
 
 export default InformationTable
