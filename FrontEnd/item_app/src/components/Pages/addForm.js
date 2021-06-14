@@ -3,8 +3,10 @@ import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
 import NavBar from "../NavBar"
 import { React, useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 const AddForm = () => {
+    let history = useHistory();
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [validated, setValidated] = useState(false)
@@ -14,19 +16,17 @@ const AddForm = () => {
         if (form.checkValidity() === false) {
             e.stopPropagation();
         }
-        if (name != "") {
+        if (name !== "") {
             fetch(`https://localhost:44351/Item/Post`, {
                 method: 'POST',
                 body: JSON.stringify({ "itemName": name, "itemDescription": description }),
                 headers: {
                     'Content-Type': 'application/json'
                 }
-        })
+            })
         }
+        history.push('/');
         setValidated(true);
-        console.log(e)
-        console.log(name)
-        console.log(description)
     }
     return (
         <div>
@@ -35,7 +35,7 @@ const AddForm = () => {
                 <Card>
                     <Card.Body>
                         <Form noValidate validated={validated}>
-                            <Form.Group controlId="itemName" controlId="validationCustom01">
+                            <Form.Group controlId="validationCustom01">
                                 <Form.Label>Item Name</Form.Label>
                                 <Form.Control required type="text" onChange={ e => setName(e.target.value)} value={name} placeholder="Enter the name of the item"/>
                             </Form.Group>

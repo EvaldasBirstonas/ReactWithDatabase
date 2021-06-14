@@ -19,8 +19,6 @@ const InformationTable = (props) => {
         setItemList(itemList.filter(x => x.id !== id));
         handleClose();
     };
-    console.log(props);
-    //setItemList(() => props.informationlist);
     useEffect(() => {
         setItemList(props.informationlist);
     }, [props.informationlist]);

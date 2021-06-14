@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import { useEffect } from 'react'
 
 const NavigationButton = ({isLoaded, leftDisabled, rightDisabled, currentPage, setCurrentPage}) => {
     const handleNext = () => {
@@ -12,9 +11,6 @@ const NavigationButton = ({isLoaded, leftDisabled, rightDisabled, currentPage, s
     const handleReset = () => {
         setCurrentPage(0)
     }
-    console.log(leftDisabled)
-    console.log(rightDisabled)
-    console.log(currentPage)
     return (
         <div>
             <center>

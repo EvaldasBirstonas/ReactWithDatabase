@@ -13,10 +13,4 @@ function App() {
   </Router>
   );
 }
-/*
-const fetchData = () => {
-  return fetch("https://localhost:44351/Item")
-        .then((response) => response.json())
-        .then((data) => console.log(data));}
-*/
 export default App;

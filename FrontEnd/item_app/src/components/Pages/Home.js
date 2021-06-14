@@ -11,23 +11,22 @@ const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const offsetNumber = 11;
-  async function fetchData() {
-    fetch("https://localhost:44351/Item/Offset?start=" + currentPage * 10 + "&end=" + ((currentPage + 1) * 10 + 1))
-    .then(response => response.json())
-    .then(
-      (data) => {
-      console.log(data);
-      setIsLoaded(true);
-      setItems(data);
-    },
-    (error) => {
-      setIsLoaded(true);
-      setError(error);
-    }
-    )
-  }
+  const offsetNumber = 10;
   useEffect(() => {
+    async function fetchData() {
+      fetch("https://localhost:44351/Item/Offset?start=" + currentPage * offsetNumber + "&end=" + ((currentPage + 1) * offsetNumber + 1))
+      .then(response => response.json())
+      .then(
+        (data) => {
+        setIsLoaded(true);
+        setItems(data);
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+      )
+    }
     fetchData()
   }, [currentPage])
   if (error) {
