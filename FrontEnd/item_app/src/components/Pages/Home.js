@@ -5,6 +5,7 @@ import AddForm from './AddForm';
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import NavigationButton from '../NavigationButton';
+import ViewForm from './ViewForm';
 
 const Home = () => {
   const [error, setError] = useState(null);
@@ -43,9 +44,10 @@ const Home = () => {
             )} />
             <Switch>
                 <Route path="/addForm" component={AddForm}/>
+                <Route path="/viewForm/" component={ViewForm}/>
             </Switch>
-            <InformationTable informationlist={ items.length < 11 ? items : items.slice(0, -1) }/>
-            <NavigationButton isLoaded={isLoaded} leftDisabled={currentPage <= 0} rightDisabled={items.length < 11} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            <InformationTable informationlist={ items.length < offsetNumber + 1 ? items : items.slice(0, -1) }/>
+            <NavigationButton isLoaded={isLoaded} leftDisabled={currentPage <= 0} rightDisabled={items.length < offsetNumber + 1} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
     </div>
 

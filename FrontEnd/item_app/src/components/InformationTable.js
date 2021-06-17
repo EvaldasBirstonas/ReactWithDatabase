@@ -3,13 +3,18 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom';
 
 const InformationTable = (props) => {
+    let history = useHistory();
     const [show, setShow] = useState(false);
     const [name, setName] = useState("");
     const [id, setID] = useState(-1);
     const [itemList, setItemList] = useState([]);
 
+    const handleView = (id) => {
+        history.push('/viewForm/' + id);
+    }
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleDelete = () => {
@@ -36,7 +41,7 @@ const InformationTable = (props) => {
                 </thead>
                 <tbody>
                     { itemList && itemList.map(data => (
-                        <tr key={data.id}>
+                        <tr onClick={(e) => { e.stopPropagation(); handleView(data.id)}} key={data.id}>
                             <td>{ data.id }</td>
                             <td>{ data.name } </td>
                             <td>{ data.description }</td>

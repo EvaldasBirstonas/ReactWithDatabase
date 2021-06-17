@@ -29,6 +29,13 @@ namespace ItemBackend.Controllers
             return _context.Items.ToList();
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetItem(int id)
+        {
+            _logger.LogDebug(id.ToString());
+            return Ok(_context.Items.Find(id));
+        }
+
         [HttpGet("Offset")]
         public List<Item> GetItemsWithOffset(int start, int end)
         {
